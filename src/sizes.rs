@@ -23,7 +23,10 @@ pub const PACKET_SIZE: usize = 64;
 pub const THEORETICAL_MAX_MESSAGE_SIZE: usize = PACKET_SIZE - 7 + 128 * (PACKET_SIZE - 5);
 /// The size used by Yubico, which means that no platforms will
 /// realistically expect a larger size.
+#[cfg(not(feature = "usbd-ctaphid"))]
 pub const REALISTIC_MAX_MESSAGE_SIZE: usize = 1200;
+#[cfg(feature = "usbd-ctaphid")]
+pub const REALISTIC_MAX_MESSAGE_SIZE: usize = 3072;
 
 /// Max length for a large blob fragment, according to
 /// https://fidoalliance.org/specs/fido-v2.1-ps-20210615/fido-client-to-authenticator-protocol-v2.1-ps-20210615.html#largeBlobsRW

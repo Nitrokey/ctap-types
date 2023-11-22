@@ -32,6 +32,11 @@ quickcheck = "1.0.3"
 serde = { version = "1" }
 
 [features]
+# usbd-ctaphid compatibility mode changes the message size to use the same
+# value as usbd-ctaphid, 3072.  This is only necessary if the large-blob
+# extension is used.
+usbd-ctaphid = []
+
 log-all = ["cbor-smol/log-all"]
 log-none = []
 
